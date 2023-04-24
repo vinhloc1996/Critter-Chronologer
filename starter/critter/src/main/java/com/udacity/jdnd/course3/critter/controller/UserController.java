@@ -128,9 +128,12 @@ public class UserController {
     private CustomerDTO mapCustomerToDto(Customer c){
         CustomerDTO dto = new CustomerDTO();
         BeanUtils.copyProperties(c, dto);
+        List<Long> petIds = new ArrayList<>();
         c.getPets().forEach( pet -> {
-            dto.getPetIds().add(pet.getId());
+            petIds.add(pet.getId());
         });
+
+        dto.setPetIds(petIds);
         return dto;
     }
 }

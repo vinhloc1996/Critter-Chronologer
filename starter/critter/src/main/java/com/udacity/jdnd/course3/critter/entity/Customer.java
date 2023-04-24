@@ -27,6 +27,6 @@ public class Customer {
     @Column(length=5000)
     private String notes;
 
-    @OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "customer", orphanRemoval = true, targetEntity = Pet.class)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, targetEntity = Pet.class)
     private List<Pet> pets = new ArrayList<>();
 }

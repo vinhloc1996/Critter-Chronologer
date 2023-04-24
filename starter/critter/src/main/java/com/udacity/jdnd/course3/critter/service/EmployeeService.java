@@ -46,6 +46,9 @@ public class EmployeeService {
         employeeRepository.delete(employee);
     }
 
+    public List<Employee> getEmployeeByIds(List<Long> empIds) {
+        return employeeRepository.findAllById(empIds);
+    }
 
     public List<Employee> getAvailableEmployees(LocalDate date, Set<EmployeeSkill> skills) {
         DayOfWeek dayOfWeek = date.getDayOfWeek();

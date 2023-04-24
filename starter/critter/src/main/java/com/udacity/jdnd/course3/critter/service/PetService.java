@@ -1,6 +1,7 @@
 package com.udacity.jdnd.course3.critter.service;
 
 import com.udacity.jdnd.course3.critter.entity.Customer;
+import com.udacity.jdnd.course3.critter.entity.Employee;
 import com.udacity.jdnd.course3.critter.entity.Pet;
 import com.udacity.jdnd.course3.critter.exception.EmployeeNotFoundException;
 import com.udacity.jdnd.course3.critter.exception.PetNotFoundException;
@@ -42,6 +43,8 @@ public class PetService {
         pet.setCustomer(cus);
         Pet newPet = petRepository.save(pet);
 
+        cus.getPets().add(newPet);
+
         return newPet;
     }
 
@@ -52,6 +55,10 @@ public class PetService {
             throw new PetNotFoundException();
 
         petRepository.delete(pet);
+    }
+
+    public List<Pet> getPetByIds(List<Long> petIds) {
+        return petRepository.findAllById(petIds);
     }
 
     public List<Pet> getPetsByCustomerId(Long cusId){

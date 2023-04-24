@@ -21,6 +21,10 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
+    public List<Customer> getCustomerByIds(List<Long> cusIds) {
+        return customerRepository.findAllById(cusIds);
+    }
+
     public Customer getCustomer(Long cusId) {
         return customerRepository.getCustomerById(cusId);
     }

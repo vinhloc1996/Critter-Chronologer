@@ -45,7 +45,9 @@ public class PetController {
         if (p == null)
             throw new PetNotFoundException();
 
-        return mapPetToDto(p);
+        PetDTO petDto = mapPetToDto(p);
+        petDto.setOwnerId(p.getCustomer().getId());
+        return petDto;
     }
 
     @GetMapping
@@ -80,7 +82,7 @@ public class PetController {
     private PetDTO mapPetToDto(Pet pet) {
         PetDTO dto = new PetDTO();
         BeanUtils.copyProperties(pet, dto);
-
+        dto.setOwnerId(pet.getCustomer().getId());
         return dto;
     }
 }
